@@ -68,12 +68,12 @@ For creating the dashboard I need to dive deeper into Dash and Plotly. In the pr
 
 I have to make a lot of requests to get all the valance values for every track from the Spotify Api. I check if there is a request limit. When developing the dashboard it may be useful to use some mock data.
 
+💃
+
+---
+
 ### References
 
 Get Audio Features for a Track | Spotify for Developers. (n.d.). Spotify for Developers. Retrieved 12 October 2020, from https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/
 
 The Economist. (2020, February 6). Data from Spotify suggest that listeners are gloomiest in February. https://www.economist.com/graphic-detail/2020/02/08/data-from-spotify-suggest-that-listeners-are-gloomiest-in-february
-
----
-
-🕺💃
