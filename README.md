@@ -1,8 +1,8 @@
-for **Fundamentals of Data Science** @master-data-driven-design
+for **Fundamentals of Data Science** @HU
 
 # Spotify Mood Dashboard
 
-In this dashboard I want to let users discover what effects the time of year and different events (such as COVID-19) have on our mood by showing which music we listen to the most during that period.
+In this dashboard I want to let users discover what effects the time of the year and different events (such as COVID-19) have on our mood by visualizing which music we listen to the most over time.
 
 ### Background
 
@@ -39,3 +39,7 @@ With the URL I can retrieve the valence of the songs.
 ### References
 
 The Economist. (2020, February 6). Data from Spotify suggest that listeners are gloomiest in February. https://www.economist.com/graphic-detail/2020/02/08/data-from-spotify-suggest-that-listeners-are-gloomiest-in-february
+
+---
+
+🕺💃
