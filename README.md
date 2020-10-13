@@ -60,9 +60,13 @@ The API will return the following:
 
 ### Design
 
-### Skills/knowledge
+![first-sketch.png](first-sketch.png)
 
-### Obstacles
+### Skills & obstacles
+
+For creating the dashboard I need to dive deeper into Dash and Plotly. In the previous assignments we created relatively simple charts and graphs. It may become a bit more challenging now that that have a lot more data to plot.
+
+I have to make a lot of requests to get all the valance values for every track from the Spotify Api. I check if there is a request limit. When developing the dashboard it may be useful to use some mock data.
 
 ### References
 
