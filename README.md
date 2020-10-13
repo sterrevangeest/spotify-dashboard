@@ -14,21 +14,49 @@ Since 2017 Spotify has also published daily and weekly tables of the 200 most-st
 
 **Scraping Spotify Charts**
 
-I use the Spotify Charts website to find out which songs most people are listening to in recent years. I have to scrape the website for this. This has been done before by another developer. With some minor tweaks, I can use this code.
-With a few minor changes to the code I can get the data I need from this website.
+I use the Spotify Charts website to find out which songs most people are listening to since 2017. I need to scrape the website to get the data I need. A developer, @hktosun, has built a scraper (see [Spotify_WebScraper.py](https://gist.github.com/hktosun/d4f98488cb8f005214acd12296506f48)) in Python for this website before. I tweaked the code a bit (see [spotify-charts-scraper.py](https://github.com/sterrevangeest/spotify-dashboard/blob/master/spotify-charts-scraper.py)) to get all the necessary data.
 
-The following information is retrieved from the website:
+The following information is retrieved from the website and exported to a `.csv` file:
 
 | Song                                          | Artist                | Date       | Streams    | Url                                                   | Rank |
 | --------------------------------------------- | --------------------- | ---------- | ---------- | ----------------------------------------------------- | ---- |
 | Sunflower - Spider-Man: Into the Spider-Verse | Post Malone, Swae Lee | 2019-01-04 | 32,548,077 | https://open.spotify.com/track/3KkXRkHbMCARz0aVfEt68P | 1    |
 | thank u, next                                 | Ariana Grande         | 2019-01-04 | 29,904,412 | https://open.spotify.com/track/2rPE9A1vEgShuZxxzR2tZH | 2    |
 
-and is saved to a csv file.
+**etc...** (see [data/global.csv](https://github.com/sterrevangeest/spotify-dashboard/blob/master/data/global.csv) for the whole dataset).
 
 **Spotify Api**
 
-With the URL I can retrieve the valence of the songs.
+I can retrieve the audio features from a track from the Spotify Api by using the url of the song. The most important value for me will be the valence value: a measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry)(Get Audio Features for a Track | Spotify for Developers, n.d.).
+
+```
+GET https://api.spotify.com/v1/audio-features/{id}
+```
+
+The API will return the following:
+
+```json
+{
+ "duration_ms": 255349,
+ "key": 5,
+ "mode": 0,
+ "time_signature": 4,
+ "acousticness": 0.514,
+ "danceability": 0.735,
+ "energy": 0.578,
+ "instrumentalness": 0.0902,
+ "liveness": 0.159,
+ "loudness": -11.84,
+ "speechiness": 0.0461,
+ "valence": 0.624,
+ "tempo": 98.002,
+ "id": "06AKEBrKUckW0KREUWRnvT",
+ "uri": "spotify:track:06AKEBrKUckW0KREUWRnvT",
+ "track_href": "https://api.spotify.com/v1/tracks/06AKEBrKUckW0KREUWRnvT",
+ "analysis_url": "https://api.spotify.com/v1/audio-analysis/06AKEBrKUckW0KREUWRnvT",
+ "type": "audio_features"
+}
+```
 
 ### Design
 
@@ -37,6 +65,8 @@ With the URL I can retrieve the valence of the songs.
 ### Obstacles
 
 ### References
+
+Get Audio Features for a Track | Spotify for Developers. (n.d.). Spotify for Developers. Retrieved 12 October 2020, from https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/
 
 The Economist. (2020, February 6). Data from Spotify suggest that listeners are gloomiest in February. https://www.economist.com/graphic-detail/2020/02/08/data-from-spotify-suggest-that-listeners-are-gloomiest-in-february
 
