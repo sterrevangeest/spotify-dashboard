@@ -3,25 +3,33 @@ import dash_core_components as dcc
 import dash_html_components as html
 import plotly.express as px
 import pandas as pd
+from datetime import datetime as dt
+from dateutil.parser import parse
 
-external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
+# external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
-app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+app = dash.Dash(__name__)
 
-# assume you have a "long-form" data frame
-# see https://plotly.com/python/px-arguments/ for more options
-df = pd.DataFrame({
-    "Fruit": ["Apples", "Oranges", "Bananas", "Apples", "Oranges", "Bananas"],
-    "Amount": [4, 1, 2, 2, 4, 5],
-    "City": ["SF", "SF", "SF", "Montreal", "Montreal", "Montreal"]
-})
+df = pd.read_csv("data/data_complete-kopie.csv")
+df['Date'] = df['Date'].astype('datetime64[ns]')
+df = df.copy()
+df_average = df.groupby("Date")["Valence"].mean()
+df_average = df_average.reset_index()
+df_average["Week"] = df_average["Date"].dt.strftime("%V")
+df_average["Year"] = df_average['Date'].dt.year
 
-fig = px.bar(df, x="Fruit", y="Amount", color="City", barmode="group")
+fig = px.line(df_average, x="Week", y="Valence", color="Year")
+
+# fig.update_layout(
+#     plot_bgcolor='#0d2137',
+#     paper_bgcolor='#0d2137',
+#     font_color="#fff"
+# )
 
 app.layout = html.Div(children=[
-    html.H1(children='Hello Dash', className="app-header--title"),
+    html.H1(children='Spotify Mood Dashboard', className="app-header--title"),
 
-    html.Div(children='''
+    html.P(children='''
         Dash: A web application framework for Python.
     '''),
 
@@ -32,4 +40,4 @@ app.layout = html.Div(children=[
 ])
 
 if __name__ == '__main__':
-    app.run_server(debug=False)
+    app.run_server(debug=True)
