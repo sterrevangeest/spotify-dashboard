@@ -10,19 +10,19 @@ Since 2017 Spotify has also published daily and weekly tables of the 200 most-st
 
 - npm & fds koppeling
 
-### Data Sources
+## Data Sources
 
-**Spotify API**
+### Spotify API
 
 Spotify has an algorithm that classifies a song’s **“valence”**, or how happy it sounds, on a scale from 0 to 100. The algorithm is trained on ratings of positivity by musical experts, and gives Aretha Franklin’s soaring “Respect” a score of 97; Radiohead’s gloomy “Creep” gets just 10 (The Economist, 2020).
 
-**Spotify Charts**
+### Spotify Charts
 
 Since 2017 Spotify has also published daily and weekly tables of the 200 most-streamed songs, both worldwide and in each country on [Spotify Charts](https://spotifycharts.com/regional).
 
-### Theoretical Framework
+## Theoretical Framework
 
-**Scraping Spotify Charts**
+### Scraping Spotify Charts
 
 I use the Spotify Charts website to find out which songs most people are listening to since 2017. I need to scrape the website to get the data I need. A developer, @hktosun, has built a scraper (see [Spotify_WebScraper.py](https://gist.github.com/hktosun/d4f98488cb8f005214acd12296506f48)) in Python for this website before. I tweaked the code a bit (see [spotify-charts-scraper.py](https://github.com/sterrevangeest/spotify-dashboard/blob/master/spotify-charts-scraper.py)) to get all the necessary data.
 
@@ -39,7 +39,7 @@ The following information is retrieved from the website and exported to a `.csv`
 
 Sometimes the same tracks appear in a number of consecutive weeks. In order to not make unnecessary requests to the Spotify API, I only use unique numbers. The unique track IDs are then stored per 100 in an object. Because a request can be made per 100 IDs (see [unique-track-ids.py](https://github.com/sterrevangeest/spotify-dashboard/blob/master/unique-track-ids.py)).
 
-**Spotify Api**
+### Spotify Api
 
 I can retrieve the audio features from a track from the Spotify Api by using the url of the song (see [spotify-api.py](https://github.com/sterrevangeest/spotify-dashboard/blob/master/spotify-api.py)). The most important value for me will be the valence value: a measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry)(Get Audio Features for a Track | Spotify for Developers, n.d.).
 
@@ -76,7 +76,7 @@ The API will return the following:
 
 In [create-complete.py](https://github.com/sterrevangeest/spotify-dashboard/blob/master/create-complete.py) I combine all the data into one big dataset, see [data/complete.py](https://github.com/sterrevangeest/spotify-dashboard/blob/master/data/complete.csv).
 
-**Creating the dashboard**
+### Creating the dashboard
 
 - modules
 
