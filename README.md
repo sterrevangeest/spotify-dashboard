@@ -2,15 +2,25 @@ for **Fundamentals of Data Science** @HU
 
 # Spotify Mood Dashboard
 
-In this dashboard I want to let users discover what effects the time of the year and different events (such as COVID-19) have on our mood by visualizing which music we listen to the most over time.
-
-### Background
+The Economist wrote the following article on February 8, 2020: "Data from Spotify suggests listeners are the most gloomy in February." The article described how an analysis of Spotify data suggests that, on average, July is the happiest listening month and the most popular tunes in February will be the most depressing ones. By analyzing data from different sources I want to discover what the effect of COVID-19 has on our listening behaviour and our mood.
 
 Spotify has an algorithm that classifies a song’s **“valence”**, or how happy it sounds, on a scale from 0 to 100. The algorithm is trained on ratings of positivity by musical experts, and gives Aretha Franklin’s soaring “Respect” a score of 97; Radiohead’s gloomy “Creep” gets just 10 (The Economist, 2020).
 
 Since 2017 Spotify has also published daily and weekly tables of the 200 most-streamed songs, both worldwide and in each country on [Spotify Charts](https://spotifycharts.com/regional).
 
+- npm & fds koppeling
+
 ### Data Sources
+
+**Spotify API**
+
+Spotify has an algorithm that classifies a song’s **“valence”**, or how happy it sounds, on a scale from 0 to 100. The algorithm is trained on ratings of positivity by musical experts, and gives Aretha Franklin’s soaring “Respect” a score of 97; Radiohead’s gloomy “Creep” gets just 10 (The Economist, 2020).
+
+**Spotify Charts**
+
+Since 2017 Spotify has also published daily and weekly tables of the 200 most-streamed songs, both worldwide and in each country on [Spotify Charts](https://spotifycharts.com/regional).
+
+### Theoretical Framework
 
 **Scraping Spotify Charts**
 
@@ -23,11 +33,15 @@ The following information is retrieved from the website and exported to a `.csv`
 | Sunflower - Spider-Man: Into the Spider-Verse | Post Malone, Swae Lee | 2019-01-04 | 32,548,077 | https://open.spotify.com/track/3KkXRkHbMCARz0aVfEt68P | 1    |
 | thank u, next                                 | Ariana Grande         | 2019-01-04 | 29,904,412 | https://open.spotify.com/track/2rPE9A1vEgShuZxxzR2tZH | 2    |
 
-**etc...** (see [data/global.csv](https://github.com/sterrevangeest/spotify-dashboard/blob/master/data/global.csv) for the whole dataset).
+**etc...** (see [data/2019global.csv](https://github.com/sterrevangeest/spotify-dashboard/blob/master/data/2019global.csv) and [data/2020global.csv](https://github.com/sterrevangeest/spotify-dashboard/blob/master/data/2020global.csv) for the whole dataset).
+
+**Unique Track Ids**
+
+Sometimes the same tracks appear in a number of consecutive weeks. In order to not make unnecessary requests to the Spotify API, I only use unique numbers. The unique track IDs are then stored per 100 in an object. Because a request can be made per 100 IDs (see [unique-track-ids.py](https://github.com/sterrevangeest/spotify-dashboard/blob/master/unique-track-ids.py)).
 
 **Spotify Api**
 
-I can retrieve the audio features from a track from the Spotify Api by using the url of the song. The most important value for me will be the valence value: a measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry)(Get Audio Features for a Track | Spotify for Developers, n.d.).
+I can retrieve the audio features from a track from the Spotify Api by using the url of the song (see [spotify-api.py](https://github.com/sterrevangeest/spotify-dashboard/blob/master/spotify-api.py)). The most important value for me will be the valence value: a measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry)(Get Audio Features for a Track | Spotify for Developers, n.d.).
 
 ```
 GET https://api.spotify.com/v1/audio-features/{id}
@@ -58,9 +72,15 @@ The API will return the following:
 }
 ```
 
-### Design
+**Combine all the data**
 
-![first-sketch.png](first-sketch.png)
+In [create-complete.py](https://github.com/sterrevangeest/spotify-dashboard/blob/master/create-complete.py) I combine all the data into one big dataset, see [data/complete.py](https://github.com/sterrevangeest/spotify-dashboard/blob/master/data/complete.csv).
+
+**Creating the dashboard**
+
+- modules
+
+### Result
 
 ### Skills & obstacles
 
@@ -69,6 +89,12 @@ For creating the dashboard I need to dive deeper into Dash and Plotly. In the pr
 I have to make a lot of requests to get all the valance values for every track from the Spotify Api. I check if there is a request limit. When developing the dashboard it may be useful to use some mock data.
 
 💃
+
+<!-- ### Design
+
+![first-sketch.png](first-sketch.png)
+
+-->
 
 ---
 
