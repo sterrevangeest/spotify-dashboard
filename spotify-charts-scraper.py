@@ -22,15 +22,14 @@ def daterange(start_date, end_date):
 
 
 def create_links(country):
-    start_date = date(2019, 1, 4)
-    end_date = date(2019, 2, 7)
+    start_date = date(2019, 12, 27)
+    end_date = date(2020, 10, 23)
     links = []
     dates = daterange(start_date, end_date)
     for single_date in daterange(start_date, end_date):
         week_end = single_date + timedelta(days=7)
         links.append('https://spotifycharts.com/regional/' +
                      "global" + '/weekly/' + single_date.strftime("%Y-%m-%d") + "--" + week_end.strftime("%Y-%m-%d"))
-    print(links)
     return(links, dates)
 
 
@@ -49,7 +48,6 @@ def get_data(country):
     rows = []
 
     for (link, date) in zip(links, dates):
-        print(link)
         soup = get_webpage(link)
         images = soup.find_all("td", class_="chart-table-image")
         entries = soup.find_all("td", class_="chart-table-track")
@@ -62,7 +60,9 @@ def get_data(country):
             links = image.find_all("a", href=True)
             for a in links:
                 url = a["href"]
-            rows.append([song, artist, date, play_count, url, i+1])
+                track_id = url.split("https://open.spotify.com/track/")[1]
+
+            rows.append([song, artist, date, play_count, url, track_id, i+1])
 
     return (rows)
 
@@ -73,12 +73,12 @@ def get_data(country):
 def save_data(country):
     if not os.path.exists('data'):
         os.makedirs('data')
-    file_name = 'data/' + country[1].replace(" ", "_").lower() + '.csv'
+    file_name = 'data/2020' + country[1].replace(" ", "_").lower() + '.csv'
     data = get_data(country[0])
 
     if(len(data) != 0):
         data = pd.DataFrame(
-            data, columns=['Song', 'Artist', 'Date', 'Streams', 'Url', 'Rank'])
+            data, columns=['Song', 'Artist', 'Date', 'Streams', 'Url', "Track_Id", 'Rank'])
         data.to_csv(file_name, sep=',', float_format='%s', index=False)
 
 # It generates a list of countries for which the data is provided.
