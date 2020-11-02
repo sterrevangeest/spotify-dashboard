@@ -1,4 +1,5 @@
 import data
+import dash
 import dash_core_components as dcc
 import dash_html_components as html
 import plotly.express as px
@@ -39,7 +40,7 @@ fig = px.line(df_complete, x="Week", y="Valence",
 app.layout = html.Div(children=[
     html.H1(children='Does COVID-19 influence our listening mood?',
             className="app-header--title"),
-    html.P(children='Does COVID-19 influence our listening mood?',
+    html.P(children='This dashboard shows our listening mood based on weekly published top 200-most-streamed songs. The mood of a song is classified by its valence value: a measure from 0.0 to 1.0 describing the musical positiveness conveyed by a track. Tracks with high valence sound more positive (e.g. happy, cheerful, euphoric), while tracks with low valence sound more negative (e.g. sad, depressed, angry.)',
            className=""),
 
 

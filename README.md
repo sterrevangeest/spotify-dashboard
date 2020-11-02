@@ -4,11 +4,11 @@ for **Fundamentals of Data Science** @HU
 
 The Economist wrote the following article on February 8, 2020: "Data from Spotify suggests listeners are the most gloomy in February." The article described how an analysis of Spotify data suggests that, on average, July is the happiest listening month and the most popular tunes in February will be the most depressing ones. By analyzing data from different sources I want to discover what the effect of COVID-19 has on our listening behaviour and our mood.
 
-Spotify has an algorithm that classifies a song’s **“valence”**, or how happy it sounds, on a scale from 0 to 100. The algorithm is trained on ratings of positivity by musical experts, and gives Aretha Franklin’s soaring “Respect” a score of 97; Radiohead’s gloomy “Creep” gets just 10 (The Economist, 2020).
+## Theoretical Framework
 
-Since 2017 Spotify has also published daily and weekly tables of the 200 most-streamed songs, both worldwide and in each country on [Spotify Charts](https://spotifycharts.com/regional).
+Listening to music is an easy way to alter mood or relieve stress. People use music in their everyday lives to regulate, enhance, and diminish undesirable emotional states (e.g., stress, fatigue) (Heshmat 2019). With the rise of internet-based music consumption and the use of platforms like Spotify, we are able to collect and analyze our listening behaviour.
 
-- npm & fds koppeling
+To make a connection with the other two courses it would have been interesting to research the effect of personalization on Spotify’s recommendations on our listening behaviour and if their algorithms can influence our moods. However, this requires a complicated and quite extensive research. Therefore I decided to focus on what the effect of COVID-19 has on our listening behaviour and our mood.
 
 ## Data Sources
 
@@ -19,8 +19,6 @@ Spotify has an algorithm that classifies a song’s **“valence”**, or how ha
 ### Spotify Charts
 
 Since 2017 Spotify has also published daily and weekly tables of the 200 most-streamed songs, both worldwide and in each country on [Spotify Charts](https://spotifycharts.com/regional).
-
-## Theoretical Framework
 
 ### Scraping Spotify Charts
 
@@ -76,25 +74,15 @@ The API will return the following:
 
 In [create-complete.py](https://github.com/sterrevangeest/spotify-dashboard/blob/master/create-complete.py) I combine all the data into one big dataset, see [data/complete.py](https://github.com/sterrevangeest/spotify-dashboard/blob/master/data/complete.csv).
 
-### Creating the dashboard
-
-- modules
-
 ### Result
 
-### Skills & obstacles
+I would have expected that the average valence of our listening behavior in 2020 would be lower than in 2019. Since I expected COVID-19 to negatively influence our mood.
 
-For creating the dashboard I need to dive deeper into Dash and Plotly. In the previous assignments we created relatively simple charts and graphs. It may become a bit more challenging now that that have a lot more data to plot.
+The results show that the average valence from the beginning of the year unit a couple weeks ago have been above the average of 2019. The results show that we seem to listen to more happy songs.
 
-I have to make a lot of requests to get all the valance values for every track from the Spotify Api. I check if there is a request limit. When developing the dashboard it may be useful to use some mock data.
+During the development of the dashboard, I spent a relatively large amount of time collecting data, cleaning it up and recombining it. As a result, I ended up spending less time on the actual dashboard. I think this is a shame, because I would have liked to show more information based on the data. For example, it could have been very interesting to be able to see the influences of a lockdown per country.
 
 💃
-
-<!-- ### Design
-
-![first-sketch.png](first-sketch.png)
-
--->
 
 ---
 
@@ -103,3 +91,6 @@ I have to make a lot of requests to get all the valance values for every track f
 Get Audio Features for a Track | Spotify for Developers. (n.d.). Spotify for Developers. Retrieved 12 October 2020, from https://developer.spotify.com/documentation/web-api/reference/tracks/get-audio-features/
 
 The Economist. (2020, February 6). Data from Spotify suggest that listeners are gloomiest in February. https://www.economist.com/graphic-detail/2020/02/08/data-from-spotify-suggest-that-listeners-are-gloomiest-in-february
+
+Shahram Heshmat (2019, Augustus 2019). Music, Emotion, and Well-Being. Retrieved 28 October 2020, from
+https://www.psychologytoday.com/intl/blog/science-choice/201908/music-emotion-and-well-being

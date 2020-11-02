@@ -1,5 +1,5 @@
 body {
- font-family: "Libre Franklin";
+ font-family: "Libre Franklin", sans-serif;
  background-color: #0d2137;
  color: #fff;
  max-width: 80%;
@@ -8,8 +8,22 @@ body {
 
 h1 {
  font-weight: bold;
- margin: 2em 0;
+
  text-align: center;
+ font-size: 3em;
+
+ max-width: 60%;
+ margin: auto;
+ margin-bottom: 2em;
+}
+
+h1 + p {
+ text-align: center;
+ line-height: 2em;
+ font-weight: 200;
+ padding-bottom: 10em;
+ max-width: 80%;
+ margin: auto;
 }
 
 h3 {
